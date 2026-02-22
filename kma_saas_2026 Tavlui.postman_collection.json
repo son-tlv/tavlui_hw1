@@ -1,0 +1,248 @@
+{
+  "info": {
+    "_postman_id": "3e3bec77-313f-459a-a72c-58ae4620c557",
+    "name": "kma_saas_2026 Tavlui",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45158788",
+    "_collection_link": "https://go.postman.co/collection/45158788-3e3bec77-313f-459a-a72c-58ae4620c557?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Weather Portugal",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Petro Petrov\",\r\n    \"location\": \"Lisbon,Portugal\",\r\n    \"date\": \"2026-02-19\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://16.16.104.40:8000/api/weather",
+          "protocol": "http",
+          "host": [
+            "16",
+            "16",
+            "104",
+            "40"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "weather"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Weather Portugal response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Petro Petrov\",\r\n    \"location\": \"Lisbon,Portugal\",\r\n    \"date\": \"2026-02-19\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://16.16.104.40:8000/api/weather",
+              "protocol": "http",
+              "host": [
+                "16",
+                "16",
+                "104",
+                "40"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "weather"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "197"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"date\": \"2026-02-19\",\n    \"location\": \"Lisbon,Portugal\",\n    \"requester_name\": \"Petro Petrov\",\n    \"timestamp\": \"2026-02-22T11:20:03Z\",\n    \"weather\": {\n        \"humidity\": 71.5,\n        \"pressure_mb\": 1027.1,\n        \"temp_c\": 11.6,\n        \"wind_kph\": 20.1\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Weather Tallin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Sofiia Tavlui\",\r\n    \"location\": \"Tallin,Estonia\",\r\n    \"date\": \"2026-02-22\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://16.16.104.40:8000/api/weather",
+          "protocol": "http",
+          "host": [
+            "16",
+            "16",
+            "104",
+            "40"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "weather"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Weather Tallin response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Sofiia Tavlui\",\r\n    \"location\": \"Tallin,Estonia\",\r\n    \"date\": \"2026-02-22\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://16.16.104.40:8000/api/weather",
+              "protocol": "http",
+              "host": [
+                "16",
+                "16",
+                "104",
+                "40"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "weather"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "197"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"date\": \"2026-02-22\",\n    \"location\": \"Tallin,Estonia\",\n    \"requester_name\": \"Sofiia Tavlui\",\n    \"timestamp\": \"2026-02-22T11:20:35Z\",\n    \"weather\": {\n        \"humidity\": 88,\n        \"pressure_mb\": 1002.7,\n        \"temp_c\": -4.6,\n        \"wind_kph\": 38.1\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Weather Kyiv",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Sofiia Tavlui\",\r\n    \"location\": \"Kyiv,Ukraine\",\r\n    \"date\": \"2026-01-31\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://16.16.104.40:8000/api/weather",
+          "protocol": "http",
+          "host": [
+            "16",
+            "16",
+            "104",
+            "40"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "weather"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Weather Kyiv response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Sofiia Tavlui\",\r\n    \"location\": \"Kyiv,Ukraine\",\r\n    \"date\": \"2026-01-31\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://16.16.104.40:8000/api/weather",
+              "protocol": "http",
+              "host": [
+                "16",
+                "16",
+                "104",
+                "40"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "weather"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "196"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"date\": \"2026-01-31\",\n    \"location\": \"Kyiv,Ukraine\",\n    \"requester_name\": \"Sofiia Tavlui\",\n    \"timestamp\": \"2026-02-22T11:21:08Z\",\n    \"weather\": {\n        \"humidity\": 78.2,\n        \"pressure_mb\": 1014.1,\n        \"temp_c\": -11.7,\n        \"wind_kph\": 22\n    }\n}"
+        }
+      ]
+    }
+  ]
+}
