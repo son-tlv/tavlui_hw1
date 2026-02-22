@@ -4,28 +4,72 @@ import requests
 from datetime import datetime, timezone
 import os
 
-load_dotenv() # Loads the .env file
+load_dotenv()
 
 app = Flask(__name__)
 WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY") 
 SAAS_TOKEN = os.environ.get("SAAS_TOKEN") 
 
+class InvalidUsage(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv["message"] = self.message
+        return rv
+
+@app.errorhandler(InvalidUsage)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+@app.route("/")
+def home_page():
+    return "<p><h2>Server running. Tavlui Sofiia</h2></p>"
+
 @app.route('/api/weather', methods=['POST'])
 def get_weather():
     data = request.json
+    
+    if not data:
+        raise InvalidUsage("Invalid JSON payload", status_code=400)
+        
     provided_token = data.get("token")
+    if provided_token is None:
+        raise InvalidUsage("Token is required", status_code=400)
     if provided_token != SAAS_TOKEN:
-        return jsonify({"error": "Invalid token. Access denied."}), 401
+        raise InvalidUsage("Invalid token. Access denied.", status_code=403)
+
     location = data.get("location")
     date = data.get("date")
+
+    if not location or not date:
+        raise InvalidUsage("Location and date are required fields", status_code=400)
     
-    # Fetch Visual Crossing Data
     vc_url = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}/{date}"
     params = {"unitGroup": "metric", "key": WEATHER_API_KEY, "contentType": "json"}
-    vc_response = requests.get(vc_url, params=params).json()
-    day_weather = vc_response.get('days', [{}])[0]
     
-    # Build the final response
+    vc_response = requests.get(vc_url, params=params)
+    
+    if vc_response.status_code != 200:
+        raise InvalidUsage(f"Visual Crossing API Error: {vc_response.text}", status_code=vc_response.status_code)
+
+    vc_data = vc_response.json()
+    
+    days = vc_data.get('days')
+    if not days or len(days) == 0:
+        raise InvalidUsage("No weather data found for this date and location", status_code=404)
+        
+    day_weather = days[0]
+    
     response_payload = {
         "requester_name": data.get("requester_name"),
         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
