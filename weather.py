@@ -3,12 +3,16 @@ from dotenv import load_dotenv
 import requests
 from datetime import datetime, timezone
 import os
+import google.generativeai as genai
 
-load_dotenv()
+load_dotenv() 
 
 app = Flask(__name__)
 WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY") 
 SAAS_TOKEN = os.environ.get("SAAS_TOKEN") 
+
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+ai_model = genai.GenerativeModel('gemini-1.5-flash')
 
 class InvalidUsage(Exception):
     status_code = 400
@@ -63,24 +67,32 @@ def get_weather():
         raise InvalidUsage(f"Visual Crossing API Error: {vc_response.text}", status_code=vc_response.status_code)
 
     vc_data = vc_response.json()
-    
     days = vc_data.get('days')
     if not days or len(days) == 0:
-        raise InvalidUsage("No weather data found for this date and location", status_code=404)
+        raise InvalidUsage("No weather data found", status_code=404)
         
     day_weather = days[0]
+    temp = day_weather.get("temp")
+    wind = day_weather.get("windspeed")
     
+    prompt = f"The weather in {location} on {date} will be {temp}°C with {wind} kph wind. Give a single, short sentence suggesting what a person should wear."
+    try:
+        ai_response = ai_model.generate_content(prompt).text.strip()
+    except Exception as e:
+        ai_response = "AI suggestion currently unavailable."
+
     response_payload = {
         "requester_name": data.get("requester_name"),
         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "location": location,
         "date": date,
         "weather": {
-            "temp_c": day_weather.get("temp"),
-            "wind_kph": day_weather.get("windspeed"),
+            "temp_c": temp,
+            "wind_kph": wind,
             "pressure_mb": day_weather.get("pressure"),
             "humidity": day_weather.get("humidity")
-        }
+        },
+        "ai_clothing_suggestion": ai_response 
     }
     return jsonify(response_payload)
 
