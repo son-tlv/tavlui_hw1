@@ -3,16 +3,13 @@ from dotenv import load_dotenv
 import requests
 from datetime import datetime, timezone
 import os
-import google.generativeai as genai
 
 load_dotenv() 
 
 app = Flask(__name__)
 WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY") 
 SAAS_TOKEN = os.environ.get("SAAS_TOKEN") 
-
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-ai_model = genai.GenerativeModel('gemini-1.5-flash')
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 class InvalidUsage(Exception):
     status_code = 400
@@ -75,9 +72,17 @@ def get_weather():
     temp = day_weather.get("temp")
     wind = day_weather.get("windspeed")
     
-    prompt = f"The weather in {location} on {date} will be {temp}°C with {wind} kph wind. Give a single, short sentence suggesting what a person should wear."
+    prompt = f"The weather in {location} on {date} will be {temp}°C with {wind} kph wind. Give a single, short sentence suggesting what a student should wear."
+    
+    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+    gemini_payload = {
+        "contents": [{"parts": [{"text": prompt}]}]
+    }
+    
     try:
-        ai_response = ai_model.generate_content(prompt).text.strip()
+        ai_req = requests.post(gemini_url, json=gemini_payload)
+        ai_data = ai_req.json()
+        ai_response = ai_data["candidates"][0]["content"]["parts"][0]["text"].strip()
     except Exception as e:
         ai_response = "AI suggestion currently unavailable."
 
