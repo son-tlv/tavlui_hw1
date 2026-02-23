@@ -78,11 +78,11 @@
             },
             {
               "key": "Content-Length",
-              "value": "197"
+              "value": "323"
             }
           ],
           "cookie": [],
-          "body": "{\n    \"date\": \"2026-02-19\",\n    \"location\": \"Lisbon,Portugal\",\n    \"requester_name\": \"Petro Petrov\",\n    \"timestamp\": \"2026-02-22T11:20:03Z\",\n    \"weather\": {\n        \"humidity\": 71.5,\n        \"pressure_mb\": 1027.1,\n        \"temp_c\": 11.6,\n        \"wind_kph\": 20.1\n    }\n}"
+          "body": "{\n    \"ai_clothing_suggestion\": \"Wear a warm sweater and a wind-resistant jacket to stay comfortable in the chilly, breezy weather.\",\n    \"date\": \"2026-02-19\",\n    \"location\": \"Lisbon,Portugal\",\n    \"requester_name\": \"Petro Petrov\",\n    \"timestamp\": \"2026-02-23T09:26:16Z\",\n    \"weather\": {\n        \"humidity\": 71.5,\n        \"pressure_mb\": 1027.1,\n        \"temp_c\": 11.6,\n        \"wind_kph\": 20.1\n    }\n}"
         }
       ]
     },
@@ -157,11 +157,11 @@
             },
             {
               "key": "Content-Length",
-              "value": "197"
+              "value": "326"
             }
           ],
           "cookie": [],
-          "body": "{\n    \"date\": \"2026-02-22\",\n    \"location\": \"Tallin,Estonia\",\n    \"requester_name\": \"Sofiia Tavlui\",\n    \"timestamp\": \"2026-02-22T11:20:35Z\",\n    \"weather\": {\n        \"humidity\": 88,\n        \"pressure_mb\": 1002.7,\n        \"temp_c\": -4.6,\n        \"wind_kph\": 38.1\n    }\n}"
+          "body": "{\n    \"ai_clothing_suggestion\": \"Wear a heavy windproof coat, thermal layers, and a warm hat to stay protected from the freezing wind.\",\n    \"date\": \"2026-02-22\",\n    \"location\": \"Tallin,Estonia\",\n    \"requester_name\": \"Sofiia Tavlui\",\n    \"timestamp\": \"2026-02-23T09:26:43Z\",\n    \"weather\": {\n        \"humidity\": 88.7,\n        \"pressure_mb\": 1002.3,\n        \"temp_c\": -3.9,\n        \"wind_kph\": 38.1\n    }\n}"
         }
       ]
     },
@@ -203,7 +203,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Sofiia Tavlui\",\r\n    \"location\": \"Kyiv,Ukraine\",\r\n    \"date\": \"2026-01-31\"\r\n}",
+              "raw": "{\r\n    \"token\": \"weather_tavlui\",\r\n    \"requester_name\": \"Sofiia Tavlui\",\r\n    \"location\": \"Kyiv,Ukraine\",\r\n    \"date\": \"2026-02-23\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -236,11 +236,11 @@
             },
             {
               "key": "Content-Length",
-              "value": "196"
+              "value": "317"
             }
           ],
           "cookie": [],
-          "body": "{\n    \"date\": \"2026-01-31\",\n    \"location\": \"Kyiv,Ukraine\",\n    \"requester_name\": \"Sofiia Tavlui\",\n    \"timestamp\": \"2026-02-22T11:21:08Z\",\n    \"weather\": {\n        \"humidity\": 78.2,\n        \"pressure_mb\": 1014.1,\n        \"temp_c\": -11.7,\n        \"wind_kph\": 22\n    }\n}"
+          "body": "{\n    \"ai_clothing_suggestion\": \"Wear a warm winter coat, a scarf, and layers to stay comfortable in the chilly, breezy weather.\",\n    \"date\": \"2026-02-23\",\n    \"location\": \"Kyiv,Ukraine\",\n    \"requester_name\": \"Sofiia Tavlui\",\n    \"timestamp\": \"2026-02-23T09:28:16Z\",\n    \"weather\": {\n        \"humidity\": 89.3,\n        \"pressure_mb\": 1010.7,\n        \"temp_c\": 1.5,\n        \"wind_kph\": 12.2\n    }\n}"
         }
       ]
     }
