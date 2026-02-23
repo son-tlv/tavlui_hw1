@@ -74,7 +74,7 @@ def get_weather():
     
     prompt = f"The weather in {location} on {date} will be {temp}°C with {wind} kph wind. Give a single, short sentence suggesting what a student should wear."
     
-    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key={GEMINI_API_KEY}"
     gemini_payload = {
         "contents": [{"parts": [{"text": prompt}]}]
     }
@@ -82,9 +82,14 @@ def get_weather():
     try:
         ai_req = requests.post(gemini_url, json=gemini_payload)
         ai_data = ai_req.json()
-        ai_response = ai_data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        
+        if "error" in ai_data:
+            ai_response = f"Google Error: {ai_data['error']['message']}"
+        else:
+            ai_response = ai_data["candidates"][0]["content"]["parts"][0]["text"].strip()
+            
     except Exception as e:
-        ai_response = "AI suggestion currently unavailable."
+        ai_response = f"Python Error: {str(e)}"
 
     response_payload = {
         "requester_name": data.get("requester_name"),
